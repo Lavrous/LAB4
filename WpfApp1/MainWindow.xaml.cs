@@ -17,7 +17,7 @@ namespace Arcanoid
         private Field gameField;
         private DispatcherTimer gameTimer;
         private Rectangle platform;
-        private Rectangle ball;
+        private Ellipse ball;
         private Rectangle[,] bricks;
         private TextBlock[,] bonuses;
 
@@ -151,7 +151,7 @@ namespace Arcanoid
             };
             GameCanvas.Children.Add(platform);
 
-            ball = new Rectangle
+            ball = new Ellipse
             {
                 Width = 10,
                 Height = 10,
@@ -262,13 +262,14 @@ namespace Arcanoid
             {
                 gameTimer.Stop();
                 MessageBox.Show("Вы проиграли!");
-                return;
+                this.Close();
             }
 
             if (gameField.WinCheck())
             {
                 gameTimer.Stop();
                 MessageBox.Show("Вы победили!");
+                this.Close();
             }
             // Обновление состояния игры в зависимости от бонуса
             gameField.BuffFalling();
